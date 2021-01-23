@@ -13,7 +13,7 @@ html {
 .page-container {
   position: relative;
   min-height: 100vh;
-  background-image: url(../images/image1.png);
+  background-image: url(./images/image1.png);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -101,7 +101,15 @@ section {
   align-items: center;
   justify-content: center;
 }
-
+.our-story-card-title {
+  font-size: 3.125rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  position: right;
+  color: white;
+  text-align: center;
+  padding-bottom: 20px;
+}
 .container {
   width: 40%;
   max-width:80rem;
@@ -113,7 +121,7 @@ section {
   border-radius: .4rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  box-shadow: .5rem 2px .9rem rgb(176, 189, 232);
+  box-shadow: .5rem 2px .9rem rgb(10.6, 32.9, 99.6);
 }
 .accordion-link {
   font-size: 1.1rem;
