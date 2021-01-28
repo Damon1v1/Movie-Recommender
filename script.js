@@ -81,11 +81,27 @@ function questionClick(){
 function getRecommendations() {
   //console.log(questions[i].movies[movieNum]);
   $.ajax({
+    url: "https://tastedive.com/api/similar?q=Parasite&limit=5&k=400280-Schoolpr-9S2V42WM",
     type: "GET",
-    url: "https://tastedive.com/api/similar?q=Parasite&k=400280-Schoolpr-9S2V42WM",
-    }).then(function(response){
+    dataType: "jsonp",
+    cors: true,
+    contentType: "application/json",
+    header: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    complete: function(response){
       console.log(response);
-    })
+      var returnedResponse = response
+      $.ajax({
+        url: "https://www.omdbapi.com/?t=" + returnedResponse.responseJSON.Similar.Results[0].Name + "&apikey=trilogy",
+        type: "GET",
+        dataType: "JSON"
+      }).then(function(response){
+        console.log(response);
+      })
+    }
+    });
+    
 
 }
 
