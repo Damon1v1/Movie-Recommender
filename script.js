@@ -5,31 +5,26 @@
 // https://tastedive-api-documentation.readthedocs.io/en/latest/
 
 // "https://www.omdbapi.com/?t=" + filler variable + "&apikey=trilogy"
+
+
+
+
 var questions = [
   {
-    title: "Who are you watching with?",
-    choices: [
-      "Alone",
-      "Wife", 
-      "Friends",
-      "Family"],
+    title: "What is your favorite genre?",
+    choices: ["Action", "Horror", "Comdedy", "Drama"],
+    movies: ["The Terminator", "Halloween", "The Big Lebowski", "Dead Poets Society"]
+    
   },
   {
-    title: "What is your Emotions?",
-    choices: [
-      "Happy",
-      "Depressed",
-      "Excited",
-      "Whatever"],
+    title: "Who is the best director of all time?",
+    choices: ["Martin Scorsese", "Stevem Spielberg", "Alfred Hitchcock", "Stanley Kubrick"],
+    movies: ["Taxi Driver", "Jurassic Park", "Psycho", "2001 A Space Odyssey"]
   },
   {
-    title: "What do you feel like watching?",
-    choices: [
-      "Comedy",
-      "Romantic",
-      "Action",
-      "Horror"
-    ],
+    title: "Who are watching movies with?",
+    choices: ["Alone", "Friends", "Family", "Significant Other"],
+    movies: ["Lost in Translation", "The Empire Strikes Back", "The Iron Giant", "Scott Pilgrim vs the World"]
   },
 ]
 
@@ -39,6 +34,7 @@ var questionTitle = document.getElementById("question");
 var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var recommendDIV = document.getElementById("recommendations");
+var userChoice = [];
 
 function startQuestionnaire() {
     var currentQuestion = questions[currentQuestionIndex]
@@ -56,18 +52,27 @@ function startQuestionnaire() {
       
         
         choicesNode.onclick = questionClick;
-      
         // display on the page
         choicesEl.appendChild(choicesNode);
       });
 };
 
 function questionClick(){
-  
+
+  for (var i = 0, len = choicesEl.children.length; i < len; i++){
+
+    (function(index){
+        choicesEl.children[i].onclick = function(){
+              alert(index)  ;
+        }    
+    })(i);
+  }
   currentQuestionIndex++
 
   if (currentQuestionIndex != questions.length) {
     startQuestionnaire();
   }
+
+
 }
 startQuestionnaire();
