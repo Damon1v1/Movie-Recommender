@@ -45,9 +45,11 @@ function startQuestionnaire() {
     currentQuestion.choices.forEach(function(choices, i) {
         // create new button for each choice
         var choicesNode = document.createElement("button");
+        choicesNode.setI
         choicesNode.setAttribute("class", "choice");
+        choicesNode.id= "choice-btn";
         choicesNode.setAttribute("value", choices);
-      
+        choicesNode.setAttribute("indexVal", i);
         choicesNode.textContent = i + 1 + ". " + choices;
       
         
@@ -59,14 +61,9 @@ function startQuestionnaire() {
 
 function questionClick(){
 
-  for (var i = 0, len = choicesEl.children.length; i < len; i++){
-
-    (function(index){
-        choicesEl.children[i].onclick = function(){
-              alert(index)  ;
-        }    
-    })(i);
-  }
+  userChoice.push(this.attributes.indexVal);
+  console.log(userChoice);
+  
   currentQuestionIndex++
 
   if (currentQuestionIndex != questions.length) {
@@ -75,4 +72,9 @@ function questionClick(){
 
 
 }
+
+function getRecommendations(){
+
+}
+
 startQuestionnaire();
