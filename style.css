@@ -27,6 +27,10 @@ header {
   min-height: 100%;
   margin-bottom: 2%;
 }
+@media (min-width: 10px)
+ 
+    {flex-basis: auto;
+}
 /* navbar bootwatch color */
 .bg-primary {
   background-color: rgba(0,0,0,0.60)!important;
