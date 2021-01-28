@@ -8,6 +8,7 @@
 html {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+  max-height: 100%;
 }
 
 .page-container {
@@ -48,7 +49,7 @@ header {
   background: rgba(0,0,0,0.60);
   color: white;
   font-size: 40px;
-  margin-bottom: 90px;
+  
 }
 
 /* footer style */ 
@@ -60,16 +61,22 @@ footer {
   margin : 0 auto;
   overflow : visible;
   border: transparent;
-  background: transparent;
   align-items: center;
   justify-content: center;
   color:rgb(255, 255, 255);
-  height: 50px;
+  background-color: #000;
+  padding-top: 20px;
 }
 
 footer h2 {
   font-size: 1rem;
 }
+
+/*this will remove the bullet when using a ul*/
+footer ul {
+  list-style: none;
+}
+
 .wrapper {
   margin: 100px auto 0 auto;
   max-width: 600px;
@@ -136,12 +143,23 @@ section {
   text-align: center;
   padding-bottom: 20px;
 }
-.container {
-  width: 40%;
-  max-width:80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+
+
+.custom-container-fluid {
+  margin-bottom: 20px;
 }
+
+.about-image {
+  float: left;
+  width: 180px;
+  margin: 0 20px 10px 0;
+  padding-top: 6px;
+}
+
+.icon {
+  width: 20px;
+}
+
 .accordion-item {
   background:  rgba(0,0,0,0.40);
   border-radius: .4rem;
