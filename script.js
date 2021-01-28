@@ -12,7 +12,7 @@
 var questions = [
   {
     title: "What is your favorite genre?",
-    choices: ["Action", "Horror", "Comdedy", "Drama"],
+    choices: ["Action", "Horror", "Comedy", "Drama"],
     movies: ["The Terminator", "Halloween", "The Big Lebowski", "Dead Poets Society"]
     
   },
@@ -22,12 +22,12 @@ var questions = [
     movies: ["Taxi Driver", "Jurassic Park", "Psycho", "2001 A Space Odyssey"]
   },
   {
-    title: "Who are watching movies with?",
+    title: "Who are you watching movies with?",
     choices: ["Alone", "Friends", "Family", "Significant Other"],
     movies: ["Lost in Translation", "The Empire Strikes Back", "The Iron Giant", "Scott Pilgrim vs the World"]
   },
 ]
-
+console.log(questions[0].movies[0]);
 
 var currentQuestionIndex = 0;
 var questionTitle = document.getElementById("question");
@@ -45,7 +45,7 @@ function startQuestionnaire() {
     currentQuestion.choices.forEach(function(choices, i) {
         // create new button for each choice
         var choicesNode = document.createElement("button");
-        choicesNode.setI
+        
         choicesNode.setAttribute("class", "choice");
         choicesNode.id= "choice-btn";
         choicesNode.setAttribute("value", choices);
@@ -65,15 +65,27 @@ function questionClick(){
   console.log(userChoice);
   
   currentQuestionIndex++
-
+  
   if (currentQuestionIndex != questions.length) {
     startQuestionnaire();
+    
   }
 
+  else {
+    getRecommendations();
+  }
 
 }
 
-function getRecommendations(){
+
+function getRecommendations() {
+  //console.log(questions[i].movies[movieNum]);
+  $.ajax({
+    type: "GET",
+    url: "https://tastedive.com/api/similar?q=Parasite&k=400280-Schoolpr-9S2V42WM",
+    }).then(function(response){
+      console.log(response);
+    })
 
 }
 
