@@ -79,9 +79,11 @@ function questionClick(){
 
 
 function getRecommendations() {
-  //console.log(questions[i].movies[movieNum]);
+  for (i = 0; i < userChoice.length; i++) {
+    choiceIndex = parseInt(userChoice[i]);
+    similarMovie = questions[i].movies[i];
   $.ajax({
-    url: "https://tastedive.com/api/similar?q=Parasite&limit=5&k=400280-Schoolpr-9S2V42WM",
+    url: "https://tastedive.com/api/similar?q="+ similarMovie + "&limit=5&k=400280-Schoolpr-9S2V42WM",
     type: "GET",
     dataType: "jsonp",
     cors: true,
@@ -104,5 +106,5 @@ function getRecommendations() {
     
 
 }
-
+}
 startQuestionnaire();
