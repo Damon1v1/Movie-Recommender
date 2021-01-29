@@ -88,7 +88,8 @@ function questionClick(){
 
 
 function getRecommendations() {
-
+  document.getElementById("questionnaire").style.visibility = "hidden";
+  var movieDiv = $("<div class='movie'>");
   // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
     // parse each array item as an integer
@@ -121,12 +122,33 @@ function getRecommendations() {
         type: "GET",
         dataType: "JSON"
       }).then(function(response){
-        console.log(response);
+          omdbResponse = response;
+          console.log(omdbResponse);
+          printMovieInfo(movieDiv, omdbResponse);
       })
     }
     });
     
 
 }
+
+;
 }
 startQuestionnaire();
+
+function printMovieInfo(movieDiv, omdbResponse){
+
+var rating = omdbResponse.Rated;
+var pOne = $("<p>").text("Rating: " + rating);
+movieDiv.append(pOne);
+var released = omdbResponse.Released;
+var pTwo = $("<p>").text("Released: " + released);
+movieDiv.append(pTwo);
+var plot = omdbResponse.Plot;
+var pThree = $("<p>").text("Plot: " + plot);
+movieDiv.append(pThree);
+var imgURL = omdbResponse.Poster;
+var image = $("<img>").attr("src", imgURL);
+movieDiv.append(image);
+$("#recommendations").prepend(movieDiv);
+}
