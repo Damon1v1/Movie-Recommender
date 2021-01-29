@@ -1,13 +1,3 @@
-// ----------API KEY FOR TASTE DIVE---------------
-// 400280-Schoolpr-9S2V42WM
-// ----------API KEY FOR TASTE DIVE---------------
-
-// https://tastedive-api-documentation.readthedocs.io/en/latest/
-
-// "https://www.omdbapi.com/?t=" + filler variable + "&apikey=trilogy"
-
-
-
 // create array to store questions, choices, and the associated base movies
 var questions = [
   {
@@ -24,10 +14,10 @@ var questions = [
   {
     title: "Who are you watching movies with?",
     choices: ["Alone", "Friends", "Family", "Significant Other"],
-    movies: ["Lost in Translation", "The Empire Strikes Back", "The Iron Giant", "Scott Pilgrim vs the World"]
+    movies: ["Lost in Translation", "The Empire Strikes Back", "The Iron Giant", "Clueless"]
   },
 ]
-console.log(questions[0].movies[0]);
+
 // start array with the index of 0
 var currentQuestionIndex = 0;
 // grab html dom elements
@@ -68,7 +58,7 @@ function startQuestionnaire() {
 function questionClick(){
   // push button array index value to empty array
   userChoice.push(this.getAttribute("indexVal"));
-  console.log(userChoice);
+  
   
   // move to next question
   currentQuestionIndex++
@@ -92,16 +82,13 @@ function getRecommendations() {
   var movieDiv = $("<div class='movie'>");
   // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
-    // parse each array item as an integer
+    // parse each array item as an integer and store the current index for reference purposes
     var choiceIndex = parseInt(userChoice[i], 10);
-    
-
-    console.log(typeof choiceIndex)
-    console.log(choiceIndex)
       
-    // run though each
+    // search movies array and get item by user's choice
     var similarMovie = questions[i].movies[choiceIndex];
     
+    // ajax call to taste dive to find similar movies to a starting reference
   $.ajax({
     url: "https://tastedive.com/api/similar?q="+ similarMovie + "&limit=5&k=400280-Schoolpr-9S2V42WM",
     type: "GET",
@@ -111,44 +98,57 @@ function getRecommendations() {
     header: {
       'Access-Control-Allow-Origin': '*',
     },
+    // function to run once tastedive api call is complete
     complete: function(response){
-      if(response !== undefined && response !=  null && response.Similar !== undefined &&
-        response.Similar != null && response.Similar.Results.length > 0) {
-        }
-      console.log(response);
+      // storing tastedive api response into variable
       var returnedResponse = response
+      // ajax call to omdb with information from tastedive plugged into omdb search query 
       $.ajax({
         url: "https://www.omdbapi.com/?t=" + returnedResponse.responseJSON.Similar.Results[0].Name + "&apikey=trilogy",
         type: "GET",
         dataType: "JSON"
       }).then(function(response){
+          // storing omdb response into object
           omdbResponse = response;
-          console.log(omdbResponse);
+          // pass new movieDiv and omdbResponse to printMovieInfo and runs it
           printMovieInfo(movieDiv, omdbResponse);
-      })
-    }
-    });
-    
-
+        })
+      }
+    })
+  }
 }
 
-;
-}
-startQuestionnaire();
 
 function printMovieInfo(movieDiv, omdbResponse){
+  // storing the rating from omdb response
+  var rating = omdbResponse.Rated;
+  // create and store <p> tag element
+  var pOne = $("<p>").text("Rating: " + rating);
+  // append new html element to the page
+  movieDiv.append(pOne);
 
-var rating = omdbResponse.Rated;
-var pOne = $("<p>").text("Rating: " + rating);
-movieDiv.append(pOne);
-var released = omdbResponse.Released;
-var pTwo = $("<p>").text("Released: " + released);
-movieDiv.append(pTwo);
-var plot = omdbResponse.Plot;
-var pThree = $("<p>").text("Plot: " + plot);
-movieDiv.append(pThree);
-var imgURL = omdbResponse.Poster;
-var image = $("<img>").attr("src", imgURL);
-movieDiv.append(image);
-$("#recommendations").prepend(movieDiv);
+  // do the same thing we did for the rating but for other movie info
+  var released = omdbResponse.Released;
+
+  var pTwo = $("<p>").text("Released: " + released);
+
+  movieDiv.append(pTwo);
+
+  var plot = omdbResponse.Plot;
+
+  var pThree = $("<p>").text("Plot: " + plot);
+
+  movieDiv.append(pThree);
+
+  var imgURL = omdbResponse.Poster;
+
+  var image = $("<img>").attr("src", imgURL);
+
+  movieDiv.append(image);
+
+  // prepend above other movies that may be in the div
+  $("#recommendations").prepend(movieDiv);
 }
+
+// run questionnaire
+startQuestionnaire();
