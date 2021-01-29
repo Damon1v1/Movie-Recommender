@@ -8,7 +8,7 @@
 
 
 
-
+// create array to store questions, choices, and the associated base movies
 var questions = [
   {
     title: "What is your favorite genre?",
@@ -18,7 +18,7 @@ var questions = [
   },
   {
     title: "Who is the best director of all time?",
-    choices: ["Martin Scorsese", "Stevem Spielberg", "Alfred Hitchcock", "Stanley Kubrick"],
+    choices: ["Martin Scorsese", "Steven Spielberg", "Alfred Hitchcock", "Stanley Kubrick"],
     movies: ["Taxi Driver", "Jurassic Park", "Psycho", "2001 A Space Odyssey"]
   },
   {
@@ -28,13 +28,15 @@ var questions = [
   },
 ]
 console.log(questions[0].movies[0]);
-
+// start array with the index of 0
 var currentQuestionIndex = 0;
+// grab html dom elements
 var questionTitle = document.getElementById("question");
 var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var recommendDIV = document.getElementById("recommendations");
-var userChoice = [];
+// establish empty array to hold index value of the user's choice
+var userChoice = []
 
 function startQuestionnaire() {
     var currentQuestion = questions[currentQuestionIndex]
@@ -42,17 +44,21 @@ function startQuestionnaire() {
     questionTitle.textContent = currentQuestion.title
     choicesEl.innerHTML = ""
 
+    // for each loop to append array items to page
     currentQuestion.choices.forEach(function(choices, i) {
         // create new button for each choice
         var choicesNode = document.createElement("button");
-        
-        choicesNode.setAttribute("class", "choice");
+        // establishes id for choice buttons for styling
         choicesNode.id= "choice-btn";
+        // establishes button class
+        choicesNode.setAttribute("class", "choice");
+        // establishes button value
         choicesNode.setAttribute("value", choices);
+        // grabs index value for each button
         choicesNode.setAttribute("indexVal", i);
         choicesNode.textContent = i + 1 + ". " + choices;
       
-        
+        // adds listener to each button to run questionClick function on click 
         choicesNode.onclick = questionClick;
         // display on the page
         choicesEl.appendChild(choicesNode);
@@ -60,17 +66,20 @@ function startQuestionnaire() {
 };
 
 function questionClick(){
-
+  // push button array index value to empty array
   userChoice.push(this.attributes.indexVal);
   console.log(userChoice);
   
+  // move to next question
   currentQuestionIndex++
   
+  // check to see if we're out of questions
+  // if not run again with new question
   if (currentQuestionIndex != questions.length) {
     startQuestionnaire();
     
   }
-
+  // if we're out of questions run getRecommendations
   else {
     getRecommendations();
   }
@@ -79,9 +88,16 @@ function questionClick(){
 
 
 function getRecommendations() {
+
+  // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
-    choiceIndex = parseInt(userChoice[i]);
-    similarMovie = questions[i].movies[i];
+    // parse each array item as an integer
+    var choiceIndex = userChoice[i].indexval;
+    console.log(typeof choiceIndex)
+    console.log(choiceIndex)
+    // run though each
+    var similarMovie = questions[i].movies[choiceIndex];
+    
   $.ajax({
     url: "https://tastedive.com/api/similar?q="+ similarMovie + "&limit=5&k=400280-Schoolpr-9S2V42WM",
     type: "GET",
