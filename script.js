@@ -67,7 +67,7 @@ function startQuestionnaire() {
 
 function questionClick(){
   // push button array index value to empty array
-  userChoice.push(this.attributes.indexVal);
+  userChoice.push(this.getAttribute("indexVal"));
   console.log(userChoice);
   
   // move to next question
@@ -92,9 +92,12 @@ function getRecommendations() {
   // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
     // parse each array item as an integer
-    var choiceIndex = userChoice[i].indexval;
+    var choiceIndex = parseInt(userChoice[i], 10);
+    
+
     console.log(typeof choiceIndex)
     console.log(choiceIndex)
+      
     // run though each
     var similarMovie = questions[i].movies[choiceIndex];
     
@@ -108,6 +111,9 @@ function getRecommendations() {
       'Access-Control-Allow-Origin': '*',
     },
     complete: function(response){
+      if(response !== undefined && response !=  null && response.Similar !== undefined &&
+        response.Similar != null && response.Similar.Results.length > 0) {
+        }
       console.log(response);
       var returnedResponse = response
       $.ajax({
