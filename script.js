@@ -9,7 +9,7 @@ var questions = [
   {
     title: "Who is the best director of all time?",
     choices: ["Martin Scorsese", "Steven Spielberg", "Alfred Hitchcock", "Stanley Kubrick"],
-    movies: ["Taxi Driver", "Jurassic Park", "Psycho", "2001 A Space Odyssey"]
+    movies: ["Taxi Driver", "Jurassic Park", "Psycho", "2001: A Space Odyssey"]
   },
   {
     title: "Who are you watching movies with?",
