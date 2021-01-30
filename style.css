@@ -8,6 +8,7 @@
 html {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+  max-height: 100%;
 }
 
 .page-container {
@@ -26,6 +27,7 @@ header {
   min-height: 100%;
   margin-bottom: 2%;
 }
+
 /* navbar bootwatch color */
 .bg-primary {
   background-color: rgba(0,0,0,0.60)!important;
@@ -44,11 +46,11 @@ header {
   background: rgba(0,0,0,0.60);
   color: white;
   font-size: 40px;
-  margin-bottom: 90px;
+  
 }
 
 /* footer style */ 
-footer {
+ footer {
   width: 100%;
   float: none;
   align-content: center;
@@ -56,16 +58,22 @@ footer {
   margin : 0 auto;
   overflow : visible;
   border: transparent;
-  background: transparent;
   align-items: center;
   justify-content: center;
   color:rgb(255, 255, 255);
-  height: 50px;
+  background-color: #000;
+  padding-top: 20px;
 }
 
 footer h2 {
   font-size: 1rem;
 }
+
+/*this will remove the bullet when using a ul*/
+footer ul {
+  list-style: none;
+}
+
 .wrapper {
   margin: 100px auto 0 auto;
   max-width: 600px;
@@ -101,7 +109,7 @@ footer h2 {
  
 }
 
-button {
+#start {
   background-color: rgba(33, 49, 138, 0.7);
   width: 30%;
   border-radius: 5px;
@@ -114,6 +122,35 @@ a {
   color: white;
 }
 
+.questionBox {
+  font-size: 2rem;
+  color: rgba(255,255,255,8);
+  text-decoration: none;
+  background:  rgba(0,0,0,0.40);
+  text-align: center;
+  box-shadow: .5rem 2px .9rem rgb(92, 92, 92);
+  margin-top: -200px;
+  width: 30%;
+  margin: 1.5%;
+  margin-left: 36%;
+  margin-bottom: 18%;
+}
+.question {
+  font-size: 100%;
+}
+.button {
+  transition-duration: 0.4s;
+ }
+.choice button{
+  width: 100%;
+  border-radius: 5px;
+  padding: 2px 10px;
+  border: 0;
+  transition: background-color 0.1s;
+  font-size: 1.3rem;
+  background-color: rgba(33, 49, 138, 0.7);
+  color: white;
+}
 
 /* FAQs */
 section {
@@ -132,12 +169,23 @@ section {
   text-align: center;
   padding-bottom: 20px;
 }
-.container {
-  width: 40%;
-  max-width:80rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+
+
+.custom-container-fluid {
+  margin-bottom: 20px;
 }
+
+.about-image {
+  float: left;
+  width: 180px;
+  margin: 0 20px 10px 0;
+  padding-top: 6px;
+}
+
+.icon {
+  width: 20px;
+}
+
 .accordion-item {
   background:  rgba(0,0,0,0.40);
   border-radius: .4rem;
@@ -194,4 +242,51 @@ section {
 }
 .accordion-item:target .accordion-link .ion-md-remove {
   display: block;
+}
+/* Recommend */
+#questionnaire {
+  margin-bottom: 14.5%;
+  background:  rgba(0,0,0,0.40);
+  width: 50%;
+  margin-left: 25%;
+}
+#question {
+  color: white;
+  float: center;
+  padding-bottom: 40px;
+  margin-left: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#choices button {
+  display: block;
+  margin-left: 35%;
+  width: 30%;
+}
+.choice {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  background-color: rgba(33, 49, 138, 0.7);
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: white;
+  border: 0;
+  font-size: medium;
+  transition: background-color 0.1s;
+ }
+/* Movies */
+
+#questionnaire .movie {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+.movie p {
+  color: white;
+  width: 80%;
 }
