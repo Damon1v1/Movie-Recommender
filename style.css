@@ -27,10 +27,7 @@ header {
   min-height: 100%;
   margin-bottom: 2%;
 }
-@media (min-width: 10px)
- 
-    {flex-basis: auto;
-}
+
 /* navbar bootwatch color */
 .bg-primary {
   background-color: rgba(0,0,0,0.60)!important;
@@ -53,7 +50,7 @@ header {
 }
 
 /* footer style */ 
-footer {
+ footer {
   width: 100%;
   float: none;
   align-content: center;
@@ -245,4 +242,51 @@ section {
 }
 .accordion-item:target .accordion-link .ion-md-remove {
   display: block;
+}
+/* Recommend */
+#questionnaire {
+  margin-bottom: 14.5%;
+  background:  rgba(0,0,0,0.40);
+  width: 50%;
+  margin-left: 25%;
+}
+#question {
+  color: white;
+  float: center;
+  padding-bottom: 40px;
+  margin-left: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#choices button {
+  display: block;
+  margin-left: 35%;
+  width: 30%;
+}
+.choice {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  background-color: rgba(33, 49, 138, 0.7);
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: white;
+  border: 0;
+  font-size: medium;
+  transition: background-color 0.1s;
+ }
+/* Movies */
+
+#questionnaire .movie {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+.movie p {
+  color: white;
+  width: 80%;
 }
