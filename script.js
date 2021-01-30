@@ -78,7 +78,7 @@ function questionClick(){
 
 
 function getRecommendations() {
-  document.getElementById("questionnaire").style.visibility = "hidden";
+  document.getElementById("questionnaire").innerHTML = "";
   var movieDiv = $("<div class='movie'>");
   // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
@@ -147,7 +147,7 @@ function printMovieInfo(movieDiv, omdbResponse){
   movieDiv.append(image);
 
   // prepend above other movies that may be in the div
-  $("#recommendations").prepend(movieDiv);
+  $("#questionnaire").prepend(movieDiv);
 }
 
 // run questionnaire
