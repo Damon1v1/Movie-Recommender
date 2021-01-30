@@ -78,7 +78,7 @@ function questionClick(){
 
 
 function getRecommendations() {
-  document.getElementById("questionnaire").innerHTML = "";
+  // establish variable to hold dom element for movie info content
   var movieDiv = $("<div class='movie'>");
   // for loop through the userChoice array
   for (i = 0; i < userChoice.length; i++) {
@@ -146,7 +146,9 @@ function printMovieInfo(movieDiv, omdbResponse){
 
   movieDiv.append(image);
 
-  // prepend above other movies that may be in the div
+  // hide questionnaire
+  document.getElementById("questionnaire").innerHTML = "";
+  // prepend movie content to page above other movies that may be in the div
   $("#questionnaire").prepend(movieDiv);
 }
 
